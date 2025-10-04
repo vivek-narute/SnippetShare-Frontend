@@ -1,0 +1,190 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* --- COLOR & FONT DEFINITIONS (Mainly Neon Green) --- */
+:root {
+    --hud-color: #00FFC0;     /* Bright Neon Green/Cyan */
+    --dark-bg: #001008;       /* Very dark green background */
+    --input-bg: #000000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Share Tech Mono', monospace;
+}
+
+body {
+    background: var(--dark-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    color: var(--hud-color);
+    background-image: linear-gradient(rgba(0, 255, 192, 0.05) 1px, transparent 1px);
+    background-size: 100% 3px;
+}
+
+/* --- THE MAIN HUD/TERMINAL FRAME (CUSTOM SHAPE) --- */
+.login {
+    position: relative;
+    width: 600px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    
+    /* Custom Shape with clip-path */
+    clip-path: polygon(
+        0 10%, 10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%
+    );
+    
+    box-shadow: 0 0 50px rgba(0, 255, 192, 0.5); 
+    z-index: 10;
+    
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between; 
+    align-items: flex-start; 
+}
+
+/* --- HUD VISUAL LINES/CORNERS (Outer Lines) --- */
+.login::before, .login::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--hud-color);
+    border-style: solid;
+    z-index: 11;
+    box-shadow: 0 0 10px rgba(0, 255, 192, 0.5);
+}
+
+.login::before {
+    top: -5px; left: -5px;
+    border-width: 5px 0 0 5px; 
+}
+
+.login::after {
+    bottom: -5px; right: -5px;
+    border-width: 0 5px 5px 0; 
+}
+
+/* --- BIOMETRIC SCAN ICON STYLE (YOUR PNG) --- */
+.biometric-scan {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.biometric-scan img {
+    width: 100%; 
+    height: auto;
+    filter: drop-shadow(0 0 15px var(--hud-color)) drop-shadow(0 0 30px rgba(0, 255, 192, 0.7));
+    opacity: 0.9;
+    animation: scan-glow 2s infinite alternate; 
+}
+
+@keyframes scan-glow {
+    0% { opacity: 0.8; filter: drop-shadow(0 0 10px var(--hud-color)); }
+    100% { opacity: 1; filter: drop-shadow(0 0 20px var(--hud-color)) drop-shadow(0 0 40px rgba(0, 255, 192, 0.7)); }
+}
+
+/* --- LOGIN HEADING STYLE (Positioned next to icon) --- */
+.login h2 {
+    width: calc(100% - 120px);
+    text-align: right; 
+    font-size: 2em; 
+    font-weight: bold;
+    color: var(--hud-color);
+    text-shadow: 0 0 10px var(--hud-color);
+    margin-bottom: 20px;
+    border-bottom: none; 
+    padding-bottom: 0;
+    margin-bottom: 0;
+    letter-spacing: 3px;
+}
+
+/* --- INPUT BOXES --- */
+.login .inputBox {
+    width: 100%; 
+    margin-top: 20px; 
+    position: relative;
+}
+
+.login .inputBox input {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    font-size: 1.1em;
+    color: var(--hud-color);
+    background: var(--input-bg);
+    border: none;
+    border-bottom: 1px dashed var(--hud-color);
+    padding-left: 0;
+}
+
+.login .inputBox input:focus {
+    border-color: var(--hud-color);
+    box-shadow: inset 0 0 15px var(--hud-color), 0 0 5px var(--hud-color);
+}
+
+.login .inputBox ::placeholder {
+    color: rgba(0, 255, 192, 0.5);
+}
+
+/* --- BUTTON (Action Button) - FIXES APPLIED HERE --- */
+.login .inputBox #btn {
+    padding: 15px;
+    
+    /* DEFAULT STATE: Dark background with border and soft glow */
+    background: #000; /* Dark background */
+    border: 1px solid var(--hud-color); 
+    color: var(--hud-color);
+    font-weight: bold;
+    transition: 0.3s;
+    letter-spacing: 2px;
+    border-bottom: 1px solid var(--hud-color);
+    
+    /* Soft Glow */
+    text-shadow: 0 0 8px var(--hud-color);
+    box-shadow: 0 0 12px var(--hud-color);
+}
+
+.login .inputBox #btn:hover {
+    /* HOVER STATE: Softer glow, transparent background (Matching Logged-In Buttons) */
+    background: rgba(0, 255, 192, 0.1); 
+    color: var(--hud-color);
+    
+    /* Controlled glow intensity */
+    text-shadow: 0 0 15px var(--hud-color); 
+    box-shadow: 0 0 20px var(--hud-color); 
+    border: 1px solid var(--hud-color);
+}
+
+/* --- GROUP LINKS (Small Terminal Text) --- */
+.login .group {
+    width: 100%; 
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login .group a {
+    font-size: 0.9em;
+    color: var(--hud-color);
+    text-decoration: none;
+    opacity: 0.8;
+    text-shadow: 0 0 5px rgba(0, 255, 192, 0.5);
+}
+
+.login .group a:hover {
+    opacity: 1;
+    text-decoration: underline;
+    text-shadow: 0 0 10px var(--hud-color);
+}
