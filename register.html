@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTER ACCESS</title>
+    <!-- Sci-Fi/Hacker Font Link -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="register.css">
+</head>
+<body>
+    <div class="container">
+        
+        <!-- NEW: HUD ICON and TITLE SECTION (Matching Login Page) -->
+        <div class="header-section">
+            <div class="hud-icon-container">
+                <!-- Assuming hud_face.png is accessible -->
+                <img src="hud_face.png" alt="HUD Icon"> 
+            </div>
+            <!-- Title for Registration -->
+            <h2 class="page-title">INITIATE SIGNUP</h2>
+        </div>
+        
+        <!-- Form Section -->
+        <form id="register-form">
+            <!-- Labels added for HUD styling consistency -->
+            <h3>FULL NAME:</h3>
+            <input type="text" class="input-field" placeholder="ENTER FULL NAME" required>
+            
+            <h3>EMAIL ID:</h3>
+            <input type="email" class="input-field" placeholder="ENTER EMAIL ADDRESS" required>
+            
+            <h3>PASSWORD:</h3>
+            <input type="password" class="input-field" placeholder="CREATE PASSWORD" required>
+            
+            <h3>CONFIRM PASSWORD:</h3>
+            <input type="password" class="input-field" placeholder="RE-ENTER PASSWORD" required>
+            
+            <button type="submit" class="btn btn-register">REGISTER ACCESS</button>
+        </form>
+        
+        <p class="footer">
+            ALREADY HAVE ACCESS? <a href="login.html">LOGIN</a>
+        </p>
+    </div>
+</body>
+</html>

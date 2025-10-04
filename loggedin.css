@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* --- COLOR & FONT DEFINITIONS (Matching Login Page) --- */
+:root {
+    --hud-color: #00FFC0;     /* Bright Neon Green/Cyan */
+    --dark-bg: #001008;       /* Very dark green background */
+    --input-bg: #000000;
+}
+
+/* --- GLOBAL & BODY SETUP --- */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Share Tech Mono', monospace; 
+}
+
+body {
+    background: var(--dark-bg);
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    min-height: 100vh; 
+    color: var(--hud-color); 
+    background-image: linear-gradient(rgba(0, 255, 192, 0.05) 1px, transparent 1px);
+    background-size: 100% 3px;
+}
+
+/* --- CONTAINER (The Dashboard HUD Frame) --- */
+.container {
+    position: relative;
+    background: rgba(0, 0, 0, 0.85);
+    border: none;
+    padding: 40px; 
+    width: 650px; 
+    max-height: 90vh; 
+    overflow-y: auto;
+    
+    clip-path: polygon(
+        0 10%, 10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%
+    );
+    
+    box-shadow: 0 0 40px rgba(0, 255, 192, 0.5);
+    z-index: 10;
+    
+    /* NEW: Flexbox for main container to manage header and content */
+    display: flex; /* Make container a flex container */
+    flex-direction: column; /* Stack children vertically */
+    gap: 25px; /* Add some space between sections */
+}
+
+/* --- HUD VISUAL LINES/CORNERS (Outer Lines) --- */
+.container::before, .container::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--hud-color);
+    border-style: solid;
+    z-index: 11;
+    box-shadow: 0 0 10px rgba(0, 255, 192, 0.5);
+}
+
+.container::before {
+    top: -5px; left: -5px;
+    border-width: 5px 0 0 5px; 
+}
+
+.container::after {
+    bottom: -5px; right: -5px;
+    border-width: 0 5px 5px 0; 
+}
+
+/* --- NEW: HEADER SECTION (Icon + Title) --- */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align top */
+    margin-bottom: 25px; /* Space below header */
+    width: 100%; /* Take full width of container */
+}
+
+.hud-icon-container {
+    width: 100px; /* Icon ka size */
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    position: relative;
+}
+
+.hud-icon-container img {
+    width: 100%; 
+    height: auto;
+    filter: drop-shadow(0 0 15px var(--hud-color)) drop-shadow(0 0 30px rgba(0, 255, 192, 0.7));
+    opacity: 0.9;
+    animation: scan-glow 2s infinite alternate; /* Same glow animation */
+}
+
+/* Re-using scan-glow keyframes from Login page, ensure it's defined */
+@keyframes scan-glow {
+    0% { opacity: 0.8; filter: drop-shadow(0 0 10px var(--hud-color)); }
+    100% { opacity: 1; filter: drop-shadow(0 0 20px var(--hud-color)) drop-shadow(0 0 40px rgba(0, 255, 192, 0.7)); }
+}
+
+.page-title {
+    width: calc(100% - 120px); /* Icon ke liye jagah */
+    text-align: right; 
+    font-size: 2em; /* Title ka size */
+    font-weight: bold;
+    color: var(--hud-color);
+    text-shadow: 0 0 10px var(--hud-color);
+    margin: 0; /* Remove default margin from h2 */
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* --- HEADINGS (Terminal Prompts) --- */
+h3, h4 { 
+    color: var(--hud-color); 
+    margin-bottom: 15px; 
+    font-weight: 400;
+    font-size: 1.1em;
+    text-shadow: 0 0 5px var(--hud-color);
+    text-transform: uppercase;
+    border-left: 3px solid var(--hud-color);
+    padding-left: 10px;
+    letter-spacing: 1px;
+}
+
+/* --- INPUTS & TEXTAREAS --- */
+.input-field, .code-field {
+    width: 100%;
+    padding: 10px; 
+    margin-bottom: 25px;
+    border: none;
+    border-bottom: 1px dashed var(--hud-color);
+    background: var(--input-bg);
+    color: var(--hud-color);
+    box-shadow: inset 0 0 10px rgba(0, 255, 192, 0.3);
+    font-size: 1em;
+    outline: none;
+    resize: none;
+    min-height: 50px;
+}
+
+.code-field {
+    min-height: 100px;
+}
+
+.input-field::placeholder,
+.code-field::placeholder {
+    color: rgba(0, 255, 192, 0.5);
+}
+
+.input-field:focus, .code-field:focus {
+    border-bottom: 1px solid var(--hud-color);
+    box-shadow: inset 0 0 15px var(--hud-color);
+}
+
+
+/* --- BUTTONS --- */
+.btn {
+    width: 100%;
+    padding: 12px;
+    background: #000; 
+    border: 1px solid var(--hud-color);
+    color: var(--hud-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px var(--hud-color);
+    box-shadow: 0 0 12px var(--hud-color); /* Adjusted for consistency */
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: rgba(0, 255, 192, 0.1); 
+    color: var(--hud-color);
+    text-shadow: 0 0 15px var(--hud-color); 
+    box-shadow: 0 0 20px var(--hud-color); 
+    border: 1px solid var(--hud-color); 
+}
+
+/* --- ANALYSIS BOX (Output Terminal) --- */
+.analysis {
+    background: rgba(0, 255, 192, 0.05);
+    color: var(--hud-color); 
+    padding: 15px;
+    border: 1px solid var(--hud-color);
+    box-shadow: inset 0 0 10px rgba(0, 255, 192, 0.3);
+    min-height: 60px;
+    font-size: 0.9em;
+    margin-bottom: 25px;
+}
+
+/* --- SCROLLBAR STYLING --- */
+.container::-webkit-scrollbar {
+    width: 6px;
+}
+.container::-webkit-scrollbar-thumb {
+    background: var(--hud-color); 
+}
+
+.analysis, h4 { display: block !important; }

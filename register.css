@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+/* --- COLOR & FONT DEFINITIONS (Matching Login Page) --- */
+:root {
+    --hud-color: #00FFC0;     /* Bright Neon Green/Cyan */
+    --dark-bg: #001008;       /* Very dark green background */
+    --input-bg: #000000;
+}
+
+/* --- GLOBAL & BODY SETUP --- */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Share Tech Mono', monospace; 
+}
+
+body {
+    background: var(--dark-bg);
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    min-height: 100vh; 
+    color: var(--hud-color); 
+    
+    width: 100vw; 
+    overflow-x: hidden; 
+    
+    background-image: linear-gradient(rgba(0, 255, 192, 0.05) 1px, transparent 1px);
+    background-size: 100% 3px;
+}
+
+/* --- CONTAINER (The Register HUD Frame) --- */
+.container {
+    position: relative;
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    padding: 40px; /* Thoda zyada padding form ke liye */
+    width: 500px; /* Thoda chhota width Login/Register ke liye */
+    
+    /* Custom Shape with clip-path (Matching Login Page) */
+    clip-path: polygon(
+        0 10%, 10% 0, 100% 0, 100% 90%, 90% 100%, 0 100%
+    );
+    
+    box-shadow: 0 0 50px rgba(0, 255, 192, 0.5); 
+    z-index: 10;
+    
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between sections */
+}
+
+/* --- HUD VISUAL LINES/CORNERS (Outer Lines) --- */
+.container::before, .container::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--hud-color);
+    border-style: solid;
+    z-index: 11;
+    box-shadow: 0 0 10px rgba(0, 255, 192, 0.5);
+}
+
+.container::before {
+    top: -5px; left: -5px;
+    border-width: 5px 0 0 5px; 
+}
+
+.container::after {
+    bottom: -5px; right: -5px;
+    border-width: 0 5px 5px 0; 
+    transform: none; 
+}
+
+/* --- NEW: HEADER SECTION (Icon + Title) --- */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px; 
+    width: 100%; 
+    padding-bottom: 0; 
+    border-bottom: none; 
+}
+
+.hud-icon-container {
+    width: 80px; /* Icon size */
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 20px;
+    position: relative;
+}
+
+.hud-icon-container img {
+    width: 100%; 
+    height: auto;
+    filter: drop-shadow(0 0 15px var(--hud-color)) drop-shadow(0 0 30px rgba(0, 255, 192, 0.7));
+    opacity: 0.9;
+    animation: scan-glow 2s infinite alternate;
+}
+
+@keyframes scan-glow {
+    0% { opacity: 0.8; filter: drop-shadow(0 0 10px var(--hud-color)); }
+    100% { opacity: 1; filter: drop-shadow(0 0 20px var(--hud-color)) drop-shadow(0 0 40px rgba(0, 255, 192, 0.7)); }
+}
+
+.page-title {
+    width: calc(100% - 100px); /* Adjust width */
+    text-align: right; 
+    font-size: 2em; 
+    font-weight: bold;
+    color: var(--hud-color);
+    text-shadow: 0 0 10px var(--hud-color);
+    margin: 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+
+/* --- HEADINGS (Input Labels) --- */
+h3 { 
+    color: var(--hud-color); 
+    margin-bottom: 5px; /* Closer to the input */
+    margin-top: 15px;
+    font-weight: 400;
+    font-size: 1em; 
+    text-transform: uppercase;
+    text-shadow: 0 0 5px var(--hud-color);
+    letter-spacing: 1px;
+}
+
+/* --- FORM INPUTS --- */
+#register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px; 
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px dashed var(--hud-color);
+    background: var(--input-bg);
+    color: var(--hud-color);
+    box-shadow: inset 0 0 10px rgba(0, 255, 192, 0.3);
+    font-size: 1em;
+    outline: none;
+    resize: none;
+}
+
+.input-field:focus {
+    border-bottom: 1px solid var(--hud-color);
+    box-shadow: inset 0 0 15px var(--hud-color);
+}
+
+.input-field::placeholder {
+    color: rgba(0, 255, 192, 0.5);
+}
+
+
+/* --- BUTTON --- */
+.btn-register {
+    width: 100%;
+    padding: 15px; 
+    background: #000; 
+    border: 1px solid var(--hud-color);
+    color: var(--hud-color);
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px var(--hud-color);
+    box-shadow: 0 0 12px var(--hud-color); 
+    margin-top: 20px;
+    margin-bottom: 25px; 
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-register:hover {
+    background: rgba(0, 255, 192, 0.1); 
+    color: var(--hud-color);
+    text-shadow: 0 0 15px var(--hud-color); 
+    box-shadow: 0 0 20px var(--hud-color); 
+    border: 1px solid var(--hud-color); 
+}
+
+/* --- FOOTER/LOGIN LINK --- */
+.footer {
+    width: 100%;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--hud-color);
+    text-transform: uppercase;
+}
+.footer a { 
+    color: var(--hud-color); 
+    text-decoration: none; 
+    text-shadow: 0 0 5px var(--hud-color);
+}
+.footer a:hover { 
+    text-decoration: underline; 
+}
